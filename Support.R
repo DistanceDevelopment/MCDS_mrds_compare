@@ -17,7 +17,7 @@ test.models <- function(dist.data, truncation, transect = "line",
   lnl_R <- lnl_MCDS <- optimizer <- p_R <- p_MCDS <- Nhat_R <- Nhat_MCDS <- NULL
   
   for(i in seq(along = models$key)){
-    # Fit model using only R optmizer
+    # Fit model using only R optimizer
     fit_R <- try(ds(dist.data,
                 truncation = truncation,
                 transect = transect,
@@ -41,6 +41,7 @@ test.models <- function(dist.data, truncation, transect = "line",
                    truncation = truncation,
                    transect = transect,
                    formula = ~1,
+                   key = models$key[i],
                    adjustment = models$adj[i],
                    nadj = models$nadj[i],
                    cutpoints = cutpoints,
@@ -60,6 +61,7 @@ test.models <- function(dist.data, truncation, transect = "line",
                    truncation = truncation,
                    transect = transect,
                    formula = ~1,
+                   key = models$key[i],
                    adjustment = models$adj[i],
                    nadj = models$nadj[i],
                    cutpoints = cutpoints,
