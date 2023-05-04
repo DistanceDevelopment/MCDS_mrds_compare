@@ -740,7 +740,7 @@ knitr::kable(model.compare,
 
 Some errors / warnings:
 
-```{r errors_dathr3}
+```{r errors_ETP}
 # Fitting half-normal key function
 # Error in -lt$value : invalid argument to unary operator
 # 
@@ -751,7 +751,7 @@ Some errors / warnings:
 #   No models could be fitted.
 ```
 
-```{r akepa, eval = re_eval}
+```{r ETP_Dolphin, eval = re_eval}
 data("ETP_Dolphin")
 
 model.compare <- test.cov.models(ETP_Dolphin,
@@ -763,14 +763,74 @@ save(model.compare, file = "results/ETP_Dolphin.ROBJ")
 
 ```
 
-```{r akepa_results, echo = FALSE}
-load(file = "results/akepa.ROBJ")
+```{r ETP_Dolphin_results, echo = FALSE}
+load(file = "results/ETP_Dolphin.ROBJ")
 
 knitr::kable(model.compare,
              format = "latex",
-             caption = "Comparison of R and MCDS model fits for akepa data. key - key function, adj - type of adjustment term, nadj - number of adjustments, lnl\\_R - likelihood value for R optimiser, lnl\\_MCDS - likelihood value for MCDS optimiser, optimizer - the selected optimiser, p\\_R the estimated average probability of detection for the R optimised model, p\\_MCDS the estimated average probability of detection for the MCDS optimised model, Nhat\\_R - estimated abundance in covered region from R optimised model, Nhat\\_MCDS - estimated abundance in covered region from MCDS optimised model.",
+             caption = "Comparison of R and MCDS model fits for ETP dolphin data. key - key function, adj - type of adjustment term, nadj - number of adjustments, lnl\\_R - likelihood value for R optimiser, lnl\\_MCDS - likelihood value for MCDS optimiser, optimizer - the selected optimiser, p\\_R the estimated average probability of detection for the R optimised model, p\\_MCDS the estimated average probability of detection for the MCDS optimised model, Nhat\\_R - estimated abundance in covered region from R optimised model, Nhat\\_MCDS - estimated abundance in covered region from MCDS optimised model.",
              booktabs = TRUE,
              longtable = FALSE) %>%
   kable_styling(latex_options = "HOLD_position")
 
 ```
+
+
+
+\newpage
+
+## Minke data
+
+```{r minke, eval = re_eval}
+data("minke")
+
+model.compare <- test.cov.models(minke,
+                             truncation = max(minke$distance, na.rm = TRUE),
+                             transect = "line",
+                             models = list(~as.factor(Region.Label)))
+
+save(model.compare, file = "results/minke.ROBJ")
+
+```
+
+```{r minke_results, echo = FALSE}
+load(file = "results/minke.ROBJ")
+
+knitr::kable(model.compare,
+             format = "latex",
+             caption = "Comparison of R and MCDS model fits for minke data. key - key function, adj - type of adjustment term, nadj - number of adjustments, lnl\\_R - likelihood value for R optimiser, lnl\\_MCDS - likelihood value for MCDS optimiser, optimizer - the selected optimiser, p\\_R the estimated average probability of detection for the R optimised model, p\\_MCDS the estimated average probability of detection for the MCDS optimised model, Nhat\\_R - estimated abundance in covered region from R optimised model, Nhat\\_MCDS - estimated abundance in covered region from MCDS optimised model.",
+             booktabs = TRUE,
+             longtable = FALSE) %>%
+  kable_styling(latex_options = "HOLD_position")
+
+```
+
+## Cluster Exercise 
+
+
+```{r ClusterExercise, eval = re_eval}
+data("ClusterExercise")
+
+model.compare <- test.cov.models(ClusterExercise,
+                             truncation = max(ClusterExercise$distance, na.rm = TRUE),
+                             cutpoints = c(0,0.214285714285714,0.428571428571429,0.642857142857143,0.857142857142857,1.07142857142857,1.28571428571429,1.5),
+                             transect = "line",
+                             models = list(~size, ~Cluster.strat))
+
+save(model.compare, file = "results/ClusterExercise.ROBJ")
+
+```
+
+```{r ClusterExercise_results, echo = FALSE}
+load(file = "results/ClusterExercise.ROBJ")
+
+knitr::kable(model.compare,
+             format = "latex",
+             caption = "Comparison of R and MCDS model fits for ClusterExercise data. key - key function, adj - type of adjustment term, nadj - number of adjustments, lnl\\_R - likelihood value for R optimiser, lnl\\_MCDS - likelihood value for MCDS optimiser, optimizer - the selected optimiser, p\\_R the estimated average probability of detection for the R optimised model, p\\_MCDS the estimated average probability of detection for the MCDS optimised model, Nhat\\_R - estimated abundance in covered region from R optimised model, Nhat\\_MCDS - estimated abundance in covered region from MCDS optimised model.",
+             booktabs = TRUE,
+             longtable = FALSE) %>%
+  kable_styling(latex_options = "HOLD_position")
+
+```
+
+
