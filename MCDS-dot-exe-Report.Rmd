@@ -94,7 +94,7 @@ Things that might want further investigation:
 data("CueCountingExample")
 
 model.compare <- test.models(CueCountingExample, 
-                             truncation = max(CueCountingExample$distance), 
+                             truncation = max(CueCountingExample$distance, na.rm = TRUE), 
                              transect = "point")
 
 save(model.compare, file = "results/cue_counting.ROBJ")
@@ -134,7 +134,7 @@ Things that might want further investigation:
 data("ducknest")
 
 model.compare <- test.models(ducknest, 
-                             truncation = max(ducknest$distance), 
+                             truncation = max(ducknest$distance, na.rm = TRUE), 
                              transect = "line")
 
 save(model.compare, file = "results/ducknest.ROBJ")
@@ -199,7 +199,7 @@ truncation distance specified; using largest observed distance"?
 data("LTExercise")
 
 model.compare <- test.models(LTExercise,
-                             truncation = max(LTExercise$distance),
+                             truncation = max(LTExercise$distance, na.rm = TRUE),
                              transect = "line")
 
 save(model.compare, file = "results/LTExercise.ROBJ")
@@ -230,7 +230,7 @@ truncation distance specified; using largest observed distance"?
 data("PTExercise")
 
 model.compare <- test.models(PTExercise,
-                             truncation = max(PTExercise$distance),
+                             truncation = max(PTExercise$distance, na.rm = TRUE),
                              transect = "point")
 
 save(model.compare, file = "results/PTExercise.ROBJ")
